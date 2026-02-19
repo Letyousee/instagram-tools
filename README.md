@@ -1,3 +1,5 @@
+✅ Deployment Status: Landing page (index.html) added - ready for deployment
+
 # Instagram Engagement Calculator - Backend API
 
 ## Quick Start (5 minutes)
