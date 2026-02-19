@@ -1,18 +1,12 @@
 {
   "version": 2,
-  "name": "instagram-engagement-api",
-  "routes": [
+  "public": true,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
     {
-      "src": "/(.*\\..*)",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
-  ],
-  "env": {
-    "RAPIDAPI_KEY": "@rapidapi-key"
-  },
-  "regions": ["iad1"]
+  ]
 }
