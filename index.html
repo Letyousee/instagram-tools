@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Tools - Engagement Calculator & Fake Follower Checker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { max-width: 1000px; width: 90%; }
+        .header { text-align: center; color: white; margin-bottom: 60px; }
+        h1 { font-size: 3em; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
+        .subtitle { font-size: 1.3em; opacity: 0.9; margin-bottom: 40px; }
+        .tools-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+        .tool-card { background: white; border-radius: 10px; padding: 30px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); transition: transform 0.3s; }
+        .tool-card:hover { transform: translateY(-5px); }
+        .tool-card h2 { color: #667eea; margin-bottom: 15px; font-size: 1.8em; }
+        .tool-card p { color: #666; line-height: 1.6; margin-bottom: 20px; }
+        .btn { display: inline-block; background: #667eea; color: white; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold; transition: background 0.3s; }
+        .btn:hover { background: #764ba2; }
+        .footer { text-align: center; color: white; opacity: 0.9; margin-top: 40px; }
+        @media (max-width: 768px) { .tools-grid { grid-template-columns: 1fr; } h1 { font-size: 2em; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Instagram Tools</h1>
+            <p class="subtitle">Professional Analytics & Verification Tools</p>
+        </div>
+        
+        <div class="tools-grid">
+            <div class="tool-card">
+                <h2>📊 Engagement Calculator</h2>
+                <p>Analyze Instagram engagement rates and compare with industry benchmarks. Get insights into your account's performance and audience engagement.</p>
+                <a href="/autofetch-index.html" class="btn">Open Calculator →</a>
+            </div>
+            
+            <div class="tool-card">
+                <h2>🔍 Fake Follower Checker</h2>
+                <p>Identify fake followers and bot accounts. Analyze authentication scores and get detailed insights about follower authenticity.</p>
+                <a href="/fake-follower-checker.html" class="btn">Check Followers →</a>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>🚀 Powered by Vercel | Built with precision analytics</p>
+        </div>
+    </div>
+</body>
+</html>
