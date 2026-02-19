@@ -1,28 +1,10 @@
 {
   "version": 2,
   "name": "instagram-engagement-api",
-  "builds": [
-    {
-      "src": "api/**/*.js",
-      "use": "@vercel/node"
-    }
-  ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
-    {
-      "src": "/(.*)\.html$",
-      "dest": "/$1.html"
-    },
-    {
-      "src": "/(.*)\.css$",
-      "dest": "/$1.css"
-    },
-    {
-      "src": "/(.*)\.js$",
-      "dest": "/$1.js"
+      "src": "/(.*\\..*)",
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
