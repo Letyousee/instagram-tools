@@ -6,8 +6,7 @@
 'use strict';
 
 // ⚠️ IMPORTANT: Replace this with your deployed Vercel URL
-const API_ENDPOINT = 'https://YOUR-PROJECT-NAME.vercel.app/api/instagram';
-// Example: 'https://instagram-api-abc123.vercel.app/api/instagram'
+const API_ENDPOINT = 'https://instagram-tools-zeta.vercel.app/api/instagram';// Example: 'https://instagram-api-abc123.vercel.app/api/instagram'
 
 /* ─── BENCHMARK TIERS ────────────────────────────────────────── */
 const TIERS = [
