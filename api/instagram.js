@@ -44,13 +44,10 @@ module.exports = async (req, res) => {
   try {
     // Fetch user profile data
     const profileResponse = await axios.get(
-      'https://instagram-scraper-api2.p.rapidapi.com/v1/info',
-      {
-        params: { username_or_id_or_url: cleanUsername },
-        headers: {
+'https://instagram120.p.rapidapi.com/api/instagram/profile'      {
+{ username: cleanUsername }        headers: {
           'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-          'X-RapidAPI-Host': 'instagram-scraper-api2.p.rapidapi.com'
-        },
+'instagram120.p.rapidapi.com'        },
         timeout: 15000
       }
     );
