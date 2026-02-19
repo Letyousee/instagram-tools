@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Engagement Rate Calculator – Free Tool</title>
+  <meta name="description" content="Calculate engagement rate for any public Instagram account. Enter a username and get instant analysis with benchmarks.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="autofetch-style.css">
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════
+       CALCULATOR
+  ══════════════════════════════════════════════════ -->
+  <section class="calculator-only">
+    <div class="tool-wrap">
+      <div class="tool-card">
+
+        <!-- Username Input -->
+        <div class="username-section">
+          <div class="field">
+            <label for="username">Instagram Username</label>
+            <div class="input-with-prefix">
+              <span class="prefix">@</span>
+              <input 
+                type="text" 
+                id="username" 
+                placeholder="nike" 
+                autocomplete="off"
+                required
+                pattern="[a-zA-Z0-9._]{1,30}">
+            </div>
+          </div>
+          <p class="help-text">Enter any public Instagram username to analyze their engagement rate</p>
+        </div>
+
+        <!-- Loading/Error Messages -->
+        <div id="loading-msg" class="loading-msg" style="display:none">
+          <div class="spinner"></div>
+          <span id="loading-text">Fetching account data...</span>
+        </div>
+        <div id="error-msg" class="error-msg"></div>
+
+        <!-- Submit Button -->
+        <button class="calc-btn" onclick="analyzeByUsername()" id="analyze-btn">
+          <span class="btn-inner">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            Analyze Engagement Rate
+          </span>
+        </button>
+
+        <!-- ── RESULTS ────────────────────────────────────────────── -->
+        <div id="results">
+
+          <div class="divider"></div>
+
+          <!-- Account Info -->
+          <div class="account-info result-animate">
+            <div class="account-header">
+              <div class="account-details">
+                <div class="account-name" id="account-name">—</div>
+                <div class="account-username" id="account-username">@—</div>
+              </div>
+              <div class="account-meta">
+                <div class="meta-item">
+                  <span class="meta-label">Followers</span>
+                  <span class="meta-value" id="account-followers">—</span>
+                </div>
+                <div class="meta-item">
+                  <span class="meta-label">Posts</span>
+                  <span class="meta-value" id="account-posts">—</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary Score -->
+          <div class="er-primary result-animate">
+            <div class="er-left">
+              <div class="er-label">Engagement Rate</div>
+              <div id="er-number" class="er-value">0.00%</div>
+              <div id="er-rating" class="er-rating"></div>
+            </div>
+            <div id="er-grade" class="er-grade"></div>
+          </div>
+
+          <!-- Benchmark Bar -->
+          <div class="bench-wrap result-animate">
+            <div class="bench-header">
+              <span class="bench-title">Industry Benchmark</span>
+              <span id="bench-tier" class="bench-tier">—</span>
+            </div>
+            <div class="bar-track">
+              <div class="bar-zones">
+                <div class="zone low" style="--w:25"></div>
+                <div class="zone avg" style="--w:25"></div>
+                <div class="zone good" style="--w:25"></div>
+                <div class="zone great" style="--w:25"></div>
+              </div>
+              <div id="bar-needle" class="bar-needle" style="left:0%"></div>
+            </div>
+            <div class="bar-labels">
+              <div class="bar-label">0%<span>Low</span></div>
+              <div class="bar-label" style="align-items:center">
+                <span id="bar-mid">1.5%</span>
+                <span style="font-size:9px;color:var(--muted)">Avg</span>
+              </div>
+              <div class="bar-label" style="align-items:flex-end">
+                <span id="bar-max">6%+</span>
+                <span style="font-size:9px;color:var(--muted)">Excellent</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Metrics Grid -->
+          <div class="metrics-grid result-animate">
+            <div class="metric-chip">
+              <div class="metric-chip-label">Avg Likes</div>
+              <div id="m-likes" class="metric-chip-value">—</div>
+            </div>
+            <div class="metric-chip">
+              <div class="metric-chip-label">Avg Comments</div>
+              <div id="m-comments" class="metric-chip-value">—</div>
+            </div>
+            <div class="metric-chip">
+              <div class="metric-chip-label">Like / Comment</div>
+              <div id="m-ratio" class="metric-chip-value">—</div>
+            </div>
+            <div class="metric-chip">
+              <div class="metric-chip-label">Quality Score</div>
+              <div id="m-quality" class="metric-chip-value">—</div>
+            </div>
+            <div class="metric-chip">
+              <div class="metric-chip-label">Posts Analyzed</div>
+              <div id="m-posts-analyzed" class="metric-chip-value">—</div>
+            </div>
+            <div class="metric-chip">
+              <div class="metric-chip-label">Account Tier</div>
+              <div id="m-tier" class="metric-chip-value" style="font-size:.95rem">—</div>
+            </div>
+          </div>
+
+          <!-- Recommendations -->
+          <div class="recommendations result-animate">
+            <div class="rec-title">Performance Analysis</div>
+            <div id="rec-text" class="rec-text"></div>
+          </div>
+
+          <!-- CTA Box -->
+          <div class="cta-box result-animate">
+            <div class="cta-box-copy">
+              <div class="cta-box-head" id="cta-head">Boost Your Real Engagement</div>
+              <div class="cta-box-sub" id="cta-sub">Get more authentic likes, comments and followers.</div>
+            </div>
+            <a href="https://www.buyrealfollows.com/" target="_blank" rel="noopener" class="cta-btn" id="cta-link">
+              View Services
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          </div>
+
+        </div><!-- /#results -->
+
+      </div><!-- /.tool-card -->
+    </div><!-- /.tool-wrap -->
+  </section>
+
+  <!-- Script -->
+  <script src="autofetch-script.js"></script>
+</body>
+</html>

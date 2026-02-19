@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "name": "instagram-engagement-api",
+  "builds": [
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    }
+  ],
+  "env": {
+    "RAPIDAPI_KEY": "@rapidapi-key"
+  },
+  "regions": ["iad1"]
+}

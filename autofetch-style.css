@@ -1,0 +1,726 @@
+/* ============================================================
+   INSTAGRAM ENGAGEMENT RATE CALCULATOR
+   style.css — LIGHT THEME VERSION
+   ============================================================ */
+
+/* ─── RESET & ROOT ──────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg:           #f4f5f9;
+  --surface:      #ffffff;
+  --surface2:     #f0f2f7;
+  --border:       #e0e4ed;
+  --accent:       #ff7518;
+  --accent2:      #ff8c3a;
+  --purple:       #6366f1;
+  --purple-dark:  #4f46e5;
+  --text:         #1f2937;
+  --text-med:     #4b5563;
+  --muted:        #6b7280;
+  --radius:       16px;
+  --radius-sm:    12px;
+  --font-head:    'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --shadow:       0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-lg:    0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ─── CALCULATOR WRAPPER ────────────────────────────────────── */
+.calculator-only {
+  position: relative;
+  padding: 32px 24px;
+  z-index: 1;
+}
+
+/* ─── USERNAME INPUT ────────────────────────────────────────── */
+.username-section {
+  margin-bottom: 20px;
+}
+
+.input-with-prefix {
+  display: flex;
+  align-items: center;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.input-with-prefix:focus-within {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  background: var(--surface);
+}
+
+.prefix {
+  padding: 0 12px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 15px;
+  background: transparent;
+  user-select: none;
+}
+
+.input-with-prefix input {
+  flex: 1;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 13px 16px 13px 0 !important;
+  margin: 0 !important;
+}
+
+.input-with-prefix input:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.help-text {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* ─── LOADING SPINNER ───────────────────────────────────────── */
+.loading-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px;
+  background: #ede9fe;
+  border: 1px solid #c4b5fd;
+  border-radius: 10px;
+  margin: 16px 0;
+  color: var(--purple-dark);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(99, 102, 241, 0.2);
+  border-top-color: var(--purple);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ─── ACCOUNT INFO CARD ─────────────────────────────────────── */
+.account-info {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.account-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.account-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-head);
+}
+
+.account-username {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.account-meta {
+  display: flex;
+  gap: 20px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.meta-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--muted);
+}
+
+.meta-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  font-family: var(--font-head);
+}
+
+/* ─── RECOMMENDATIONS TEXT ──────────────────────────────────── */
+.rec-text {
+  font-size: 14px;
+  color: var(--text-med);
+  line-height: 1.7;
+}
+
+/* ─── CACHE NOTICE ──────────────────────────────────────────── */
+.cache-notice {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cache-notice strong {
+  font-weight: 600;
+}
+
+/* ─── BUTTON DISABLED STATE ─────────────────────────────────── */
+.calc-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.calc-btn:disabled:hover {
+  opacity: 0.6;
+  transform: none !important;
+  box-shadow: 0 4px 14px rgba(255, 117, 24, 0.25);
+}
+
+/* ─── TOOL CARD ─────────────────────────────────────────────── */
+.tool-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px;
+  box-shadow: var(--shadow-lg);
+}
+
+/* ─── TABS ──────────────────────────────────────────────────── */
+.calc-tabs {
+  display: flex;
+  gap: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  padding: 5px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 28px;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tab-btn.active {
+  background: var(--surface);
+  color: var(--purple);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── INPUT GRID ────────────────────────────────────────────── */
+.inputs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.inputs-grid.three-col {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.field.span-2 {
+  grid-column: span 2;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.field input {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 13px 16px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+  -moz-appearance: textfield;
+}
+
+.field input::-webkit-outer-spin-button,
+.field input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.field input::placeholder {
+  color: #9ca3af;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--purple);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ─── FORMULA NOTE ──────────────────────────────────────────── */
+.formula-note {
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  text-align: left;
+}
+
+.formula-note code {
+  background: #ede9fe;
+  color: var(--purple-dark);
+  padding: 3px 8px;
+  border-radius: 5px;
+  font-size: 11.5px;
+  font-family: 'Courier New', monospace;
+  font-weight: 500;
+}
+
+/* ─── ERROR MESSAGE ─────────────────────────────────────────── */
+.error-msg {
+  color: #f87171;
+  font-size: 12px;
+  margin-top: 8px;
+  display: none;
+  text-align: center;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.15);
+}
+
+/* ─── CALCULATE BUTTON ──────────────────────────────────────── */
+.calc-btn {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(135deg, #ff7518, #ff9147);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s, box-shadow 0.2s;
+  margin-top: 12px;
+  box-shadow: 0 4px 14px rgba(255, 117, 24, 0.25);
+}
+
+.calc-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(255, 117, 24, 0.35);
+}
+
+.calc-btn:active {
+  transform: translateY(0);
+}
+
+.calc-btn .btn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* ─── DIVIDER ───────────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 20px 0;
+}
+
+/* ─── RESULTS ───────────────────────────────────────────────── */
+#results {
+  margin-top: 24px;
+  display: none;
+}
+
+/* ─── PRIMARY ER SCORE ──────────────────────────────────────── */
+.er-primary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.er-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.er-value {
+  font-family: var(--font-head);
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: var(--text);
+}
+
+.er-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-top: 10px;
+}
+
+.er-grade {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  font-weight: 800;
+  border: 3px solid transparent;
+  flex-shrink: 0;
+}
+
+/* ─── BENCHMARK BAR ─────────────────────────────────────────── */
+.bench-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.bench-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.bench-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.bench-tier {
+  font-size: 11px;
+  font-weight: 600;
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+  color: #92400e;
+  padding: 4px 12px;
+  border-radius: 99px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.bar-track {
+  position: relative;
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 99px;
+  overflow: visible;
+  margin-bottom: 12px;
+}
+
+.bar-zones {
+  display: flex;
+  height: 100%;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.zone {
+  height: 100%;
+  flex: var(--w, 1);
+}
+
+.zone.low    { background: #fca5a5; }
+.zone.avg    { background: #fcd34d; }
+.zone.good   { background: #93c5fd; }
+.zone.great  { background: #86efac; }
+
+.bar-needle {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(255, 117, 24, 0.3), 0 0 0 4px rgba(255, 117, 24, 0.12);
+  z-index: 2;
+  transition: left 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bar-label {
+  font-size: 11px;
+  color: var(--muted);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.bar-label span {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 12px;
+}
+
+/* ─── METRICS GRID ──────────────────────────────────────────── */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.metric-chip {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.metric-chip-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.metric-chip-value {
+  font-family: var(--font-head);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ─── RECOMMENDATIONS ───────────────────────────────────────── */
+.recommendations {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 24px;
+  margin-bottom: 16px;
+}
+
+.rec-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.rec-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.rec-item:last-child {
+  border-bottom: none;
+}
+
+.rec-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.rec-head {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+
+.rec-desc {
+  font-size: 13px;
+  color: var(--text-med);
+  line-height: 1.5;
+}
+
+/* ─── CTA BOX ───────────────────────────────────────────────── */
+.cta-box {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  border: 1px solid #fcd34d;
+  border-radius: var(--radius-sm);
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.cta-box-head {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.cta-box-sub {
+  font-size: 13px;
+  color: var(--text-med);
+}
+
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 22px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 99px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity 0.2s, transform 0.15s;
+  box-shadow: 0 4px 12px rgba(255, 117, 24, 0.25);
+}
+
+.cta-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ─── ANIMATIONS ────────────────────────────────────────────── */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.result-animate {
+  animation: fadeSlideUp 0.4s ease both;
+}
+
+.result-animate:nth-child(1) { animation-delay: 0s; }
+.result-animate:nth-child(2) { animation-delay: 0.07s; }
+.result-animate:nth-child(3) { animation-delay: 0.14s; }
+.result-animate:nth-child(4) { animation-delay: 0.21s; }
+.result-animate:nth-child(5) { animation-delay: 0.28s; }
+.result-animate:nth-child(6) { animation-delay: 0.35s; }
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 540px) {
+  .calculator-only { padding: 24px 16px; }
+  .tool-card { padding: 26px 20px; }
+  .inputs-grid { grid-template-columns: 1fr; }
+  .inputs-grid.three-col { grid-template-columns: 1fr; }
+  .field.span-2 { grid-column: span 1; }
+  .metrics-grid { grid-template-columns: 1fr 1fr; }
+  .er-value { font-size: 2.2rem; }
+  .cta-box { flex-direction: column; text-align: center; }
+}
