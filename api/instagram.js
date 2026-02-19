@@ -44,13 +44,16 @@ module.exports = async (req, res) => {
   try {
     // Fetch user profile data
     const profileResponse = await axios.get(
-'https://instagram120.p.rapidapi.com/api/instagram/profile'      {
-{ username: cleanUsername }        headers: {
+      'https://instagram120.p.rapidapi.com/api/instagram/profile',
+      {
+        params: { username: cleanUsername },
+        headers: {
           'X-RapidAPI-Key': process.env.RAPIDAPI_KEY,
-'instagram120.p.rapidapi.com'        },
+          'X-RapidAPI-Host': 'instagram120.p.rapidapi.com'
+        },
         timeout: 15000
       }
-    );
+    )
 
     if (!profileResponse.data || !profileResponse.data.data) {
       throw new Error('Invalid response from Instagram API');
